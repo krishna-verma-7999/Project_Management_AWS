@@ -6,3 +6,5 @@ client/.next/
 server/node_modules
 server/dist/
 server/.env
+
+standard key.pem
