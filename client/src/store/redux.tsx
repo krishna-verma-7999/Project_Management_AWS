@@ -22,17 +22,18 @@ import {
 } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
 import createWebStorage from "redux-persist/lib/storage/createWebStorage";
+import LoadingPage from "../components/shared/LoadingPage";
 
 /* REDUX PERSISTENCE */
 const createNoopStorage = () => {
   return {
-    getItem(_key: any) {
+    getItem() {
       return Promise.resolve(null);
     },
-    setItem(_key: any, value: any) {
+    setItem(value: any) {
       return Promise.resolve(value);
     },
-    removeItem(_key: any) {
+    removeItem() {
       return Promise.resolve();
     },
   };
@@ -89,7 +90,7 @@ export default function StoreProvider({
 
   return (
     <Provider store={storeRef.current}>
-      <PersistGate loading={null} persistor={persistor}>
+      <PersistGate loading={<LoadingPage />} persistor={persistor}>
         {children}
       </PersistGate>
     </Provider>
